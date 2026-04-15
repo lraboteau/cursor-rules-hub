@@ -1,0 +1,17 @@
+version: 1
+core: true
+template:
+  id: ruby
+  title: Ruby application
+priority:
+  - type: stack-base
+    modules:
+      - stacks/ruby/base
+  - type: stack-extension
+    modules: []
+  - type: cross-cutting
+    modules:
+      - cross-cutting/security
+      - cross-cutting/testing
+      - cross-cutting/performance
+      - cross-cutting/docs

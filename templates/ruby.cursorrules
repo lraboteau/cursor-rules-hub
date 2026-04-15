@@ -1,0 +1,58 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: ruby
+manifest-path: manifests/ruby.yml
+fingerprint: sha256:e20f691898c4658a474ee8e0e23a95ce9ee9ecca91a69cdbc484fae2d2d21512
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# Ruby conventions
+
+
+- Follow the style guide enforced by RuboCop in the repository; do not fight existing cops in drive-by changes.
+- Prefer small methods and meaningful names over comments that restate the code.
+- Keep gem versions pinned consistently with the project’s existing Bundler workflow.
+
+# Security hygiene
+
+
+- Never commit secrets, tokens, or private keys; use environment variables or the platform secret store already adopted in the project.
+- Validate and encode untrusted input at trust boundaries; prefer parameterized queries for SQL.
+- Favor least privilege for tokens and IAM-style permissions discussed in the repo docs.
+
+# Testing expectations
+
+
+- Add or update automated tests when behavior changes; skip only with an explicit reason noted in the task.
+- Prefer fast, deterministic tests; isolate flaky IO behind interfaces that can be stubbed.
+- Keep fixtures small and local to the suite that uses them.
+
+# Performance awareness
+
+
+- Measure before optimizing; note what was measured and the baseline in PR descriptions when performance is the goal.
+- Avoid accidental O(n²) patterns on large collections and unbounded in-memory buffering on hot paths.
+- Prefer lazy work and caching only when correctness and invalidation are clear.
+
+# Documentation updates
+
+
+- Update README or module docs when user-facing behavior, setup steps, or CLI flags change.
+- Prefer short examples that compile or run over abstract prose when onboarding is the goal.
+- Link to upstream docs for framework basics instead of copying them wholesale.

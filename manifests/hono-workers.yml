@@ -1,0 +1,19 @@
+version: 1
+core: true
+template:
+  id: hono-workers
+  title: Hono on Cloudflare Workers
+priority:
+  - type: stack-base
+    modules:
+      - fundamentals/strict-typescript
+      - stacks/hono-workers/base
+  - type: stack-extension
+    modules:
+      - stacks/hono-workers/testing
+  - type: cross-cutting
+    modules:
+      - cross-cutting/security
+      - cross-cutting/testing
+      - cross-cutting/performance
+      - cross-cutting/docs
