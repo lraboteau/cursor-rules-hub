@@ -1,0 +1,12 @@
+---
+description: Manifest schema, module format, and merge policy for compose
+globs: manifests/**/*.yml,modules/**/*.md,core/**/*.md
+alwaysApply: false
+---
+
+# Compose and manifests
+
+- **Manifest**: `version: 1`, `template.id` / `template.title`, optional `core: false`, `priority` blocks with `type` in `stack-base` | `stack-extension` | `cross-cutting` and `modules` paths **without** `.md` under `modules/`.
+- **Modules**: Top-level sections must use exactly `# Title` (one `#`). Nested content uses `##`+. No YAML front matter in `modules/` (compose v1).
+- **Merge order**: `stack-base` < `stack-extension` < `cross-cutting`; duplicate `#` titles keep the higher-priority layer.
+- **After edits**: `python scripts/compose.py --all` then `python scripts/compose.py --check` before committing.

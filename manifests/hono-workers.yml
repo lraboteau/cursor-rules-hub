@@ -17,3 +17,4 @@ priority:
       - cross-cutting/testing
       - cross-cutting/performance
       - cross-cutting/docs
+      - cross-cutting/cursor-ide-basics

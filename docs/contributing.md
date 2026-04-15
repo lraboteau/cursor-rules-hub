@@ -1,5 +1,11 @@
 # Contributing
 
+## Working in this repo with Cursor
+
+- Maintainer rules live in **`.cursor/rules/*.mdc`** (with front matter). They are not run through `compose.py`.
+- Agent entry point: [`AGENTS.md`](../AGENTS.md) at the repo root.
+- How `.mdc` rules relate to generated `.cursorrules`: [cursor-ide-practices.md](cursor-ide-practices.md).
+
 ## Add or edit a module
 
 1. Place or update a file under `modules/` using only `# ` for top-level section titles.

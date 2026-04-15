@@ -1,0 +1,12 @@
+---
+description: Python style for compose and sync scripts
+globs: scripts/**/*.py
+alwaysApply: false
+---
+
+# Python scripts
+
+- Use **`pathlib.Path`**, read/write text with **`encoding="utf-8"`**. Avoid shelling out for core logic (sync may call compose via `subprocess` only for `--compose-first`).
+- Keep **Python 3.9+** compatibility (e.g. `typing.Optional`, avoid `X | Y` in annotations unless the project minimum is raised).
+- **Errors**: `compose` uses `ComposeError` and exit `1` for validation; `sync` uses `1` validation / `2` file errors per `docs/usage.md`.
+- **Tests**: Extend `tests/` with `pytest`; prefer small fixtures under `tmp_path` and the `root=` argument on compose helpers where applicable.

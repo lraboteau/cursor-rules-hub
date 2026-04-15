@@ -1,0 +1,12 @@
+---
+description: CI workflows and test expectations
+globs: .github/workflows/**/*.yml,tests/**/*.py
+alwaysApply: false
+---
+
+# CI and tests
+
+- **compose-check**: `.github/workflows/compose-check.yml` installs `requirements.txt`, runs `python scripts/compose.py --check`, then `pytest`.
+- **sync-smoke**: `.github/workflows/sync-smoke.yml` verifies `sync.py` copy and `--backup` behavior on a temp directory.
+- **Changing workflows**: Keep Python version aligned (e.g. 3.12 on ubuntu-latest); use `cache: pip` where setup-python supports it.
+- **Local gate**: `python scripts/compose.py --check && python -m pytest -q` before pushing.

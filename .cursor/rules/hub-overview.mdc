@@ -1,0 +1,11 @@
+---
+description: cursor-rules-hub layout and source of truth
+alwaysApply: true
+---
+
+# Hub overview
+
+- **Source of truth**: `modules/` (reusable Markdown) and `manifests/` (YAML). Edit these, not generated outputs.
+- **Generated only**: `templates/*.cursorrules` come from `scripts/compose.py`. Never hand-edit them; run `python scripts/compose.py --all` after source changes.
+- **Shared baseline**: `core/identity.md` is merged with lowest priority vs stack modules (see `docs/architecture.md`).
+- **Project Cursor rules**: `.cursor/rules/*.mdc` are for maintainers of this repo only; they are **not** part of the compose pipeline.

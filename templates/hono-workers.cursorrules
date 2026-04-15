@@ -2,7 +2,7 @@
 cursor-rules-hub: generated — do not edit by hand
 manifest: hono-workers
 manifest-path: manifests/hono-workers.yml
-fingerprint: sha256:d2db8c32906dcf2e0b63d1164b4f09c18bb4a161189292990037ecd30dd96f8f
+fingerprint: sha256:363838f30ff7035962e12a19d61506da7024a517f3ca06efa9e181938286bf20
 -->
 
 # Hub identity
@@ -69,3 +69,16 @@ This file is composed into every public template unless `core: false` is set in 
 - Update README or module docs when user-facing behavior, setup steps, or CLI flags change.
 - Prefer short examples that compile or run over abstract prose when onboarding is the goal.
 - Link to upstream docs for framework basics instead of copying them wholesale.
+
+# Cursor workflow
+
+
+- Prefer **project rules** (e.g. `.cursor/rules/*.mdc`) scoped with `globs` when the repo has many areas; use a **single `.cursorrules`** when you want one file to share or sync across machines.
+- Keep rules **short and specific**; split large topics into multiple rule files instead of one huge document.
+- Ground suggestions in **this repository’s** stack, configs, and existing patterns—avoid generic advice that conflicts with the codebase.
+
+# Context and edits
+
+
+- When changing behavior, update **tests and docs** the same way you would for non-agent workflows.
+- Do not paste secrets into rules, prompts, or committed samples; use env vars and secret stores as documented for your stack.

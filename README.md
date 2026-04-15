@@ -14,6 +14,7 @@ python scripts/sync.py --yes . hono-workers
 - Architecture: [docs/architecture.md](docs/architecture.md)
 - Day-to-day usage: [docs/usage.md](docs/usage.md)
 - Contributing: [docs/contributing.md](docs/contributing.md)
+- Cursor IDE practices: [docs/cursor-ide-practices.md](docs/cursor-ide-practices.md)
 
 ## Layout
 

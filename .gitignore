@@ -1,6 +1,15 @@
+# OS metadata
+.DS_Store
+
+# Python cache and virtual environments
 __pycache__/
+*.py[cod]
 .pytest_cache/
 .venv/
 venv/
-*.py[cod]
-.DS_Store
+
+# Local Cursor artifacts
+.cursor/plans/
+
+# Defensive: ignore nested git metadata directories
+.git/
