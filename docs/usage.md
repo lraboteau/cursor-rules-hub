@@ -53,6 +53,34 @@ Regenerate templates before syncing:
 python scripts/sync.py --compose-first --yes . hono-workers
 ```
 
+## Install without clone (GitHub)
+
+Directly download a generated template into a target project:
+
+```bash
+curl -fsSL \
+  https://raw.githubusercontent.com/laurent/cursor-rules-hub/main/templates/hono-workers.cursorrules \
+  -o /path/to/new-project/.cursorrules
+```
+
+Use the bootstrap installer script:
+
+```bash
+curl -fsSL \
+  https://raw.githubusercontent.com/laurent/cursor-rules-hub/main/scripts/install-cursorrules.sh \
+  | bash -s -- --template hono-workers --target /path/to/new-project --yes
+```
+
+Keep a backup when overwriting:
+
+```bash
+curl -fsSL \
+  https://raw.githubusercontent.com/laurent/cursor-rules-hub/main/scripts/install-cursorrules.sh \
+  | bash -s -- --template hono-workers --target /path/to/new-project --backup --yes
+```
+
+For stable/reproducible installs, pin `main` to a tag or commit SHA in URLs.
+
 ### Exit codes
 
 | Code | Meaning |

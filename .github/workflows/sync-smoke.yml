@@ -27,3 +27,16 @@ jobs:
           test -f "$tmp/proj/.cursorrules"
           python scripts/sync.py --yes --backup "$tmp/proj" hono-workers
           test -f "$tmp/proj/.cursorrules.bak"
+      - name: Install without clone script smoke
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          mkdir -p "$tmp/proj"
+          bash scripts/install-cursorrules.sh \
+            --template ruby \
+            --target "$tmp/proj" \
+            --owner-repo ignored/ignored \
+            --ref ignored \
+            --base-url "file://$PWD" \
+            --yes
+          test -f "$tmp/proj/.cursorrules"

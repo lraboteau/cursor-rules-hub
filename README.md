@@ -5,10 +5,34 @@ Opinionated, **manifest-driven** Cursor rule templates built from reusable Markd
 ## Quickstart
 
 ```bash
+# Install dependencies
 python -m pip install -r requirements.txt
+
+# Generate templates from manifests
 python scripts/compose.py --all
+
+# List available templates
 python scripts/sync.py --list
-python scripts/sync.py --yes . hono-workers
+
+# Apply a template to a new project
+python scripts/sync.py --yes /path/to/new-project hono-workers
+
+# Optional: regenerate templates before syncing
+python scripts/sync.py --compose-first --yes /path/to/new-project hono-workers
+```
+
+## Install Without Clone (GitHub)
+
+```bash
+# Direct raw template URL
+curl -fsSL \
+  https://raw.githubusercontent.com/laurent/cursor-rules-hub/main/templates/hono-workers.cursorrules \
+  -o /path/to/new-project/.cursorrules
+
+# Bootstrap installer script (template + target)
+curl -fsSL \
+  https://raw.githubusercontent.com/laurent/cursor-rules-hub/main/scripts/install-cursorrules.sh \
+  | bash -s -- --template hono-workers --target /path/to/new-project --yes
 ```
 
 - Architecture: [docs/architecture.md](docs/architecture.md)
