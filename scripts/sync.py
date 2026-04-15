@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from typing import Optional
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = REPO_ROOT / "templates"
@@ -51,7 +52,7 @@ def run_compose_first() -> None:
     subprocess.run(cmd, check=True, cwd=str(REPO_ROOT))
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(argv: Optional[list[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Sync a template into a .cursorrules file.")
     parser.add_argument("target", nargs="?", help="project directory or output file path")
     parser.add_argument("template", nargs="?", help="template name or path to .cursorrules")

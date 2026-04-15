@@ -10,14 +10,14 @@ import hashlib
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import yaml
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
-def layout(root: Path | None = None) -> tuple[Path, Path, Path, Path]:
+def layout(root: Optional[Path] = None) -> tuple[Path, Path, Path, Path]:
     r = root or REPO_ROOT
     return r / "modules", r / "manifests", r / "templates", r / "core" / "identity.md"
 
@@ -55,7 +55,7 @@ def parse_sections(text: str, *, source: str) -> list[tuple[str, str]]:
         )
 
     sections: list[tuple[str, str]] = []
-    current_title: str | None = None
+    current_title: Optional[str] = None
     current_body: list[str] = []
 
     for line in lines:
@@ -141,7 +141,7 @@ def compose_content(
     manifest: dict[str, Any],
     *,
     manifest_path: Path,
-    root: Path | None = None,
+    root: Optional[Path] = None,
 ) -> tuple[str, list[str]]:
     """Return (file_text, ordered_module_refs_for_fingerprint)."""
     modules_dir, _, _, core_file = layout(root)
@@ -210,7 +210,7 @@ def load_manifest(path: Path) -> dict[str, Any]:
     return validate_manifest(raw, path=path)
 
 
-def compose_manifest_path(manifest_path: Path, *, write: bool, root: Path | None = None) -> str:
+def compose_manifest_path(manifest_path: Path, *, write: bool, root: Optional[Path] = None) -> str:
     root = root or REPO_ROOT
     _, _, templates_dir, _ = layout(root)
     manifest = load_manifest(manifest_path)
@@ -227,14 +227,14 @@ def compose_manifest_path(manifest_path: Path, *, write: bool, root: Path | None
     return content
 
 
-def manifest_paths(root: Path | None = None) -> list[Path]:
+def manifest_paths(root: Optional[Path] = None) -> list[Path]:
     _, manifests_dir, _, _ = layout(root or REPO_ROOT)
     if not manifests_dir.is_dir():
         return []
     return sorted(manifests_dir.glob("*.yml"))
 
 
-def run_all(*, write: bool, root: Path | None = None) -> list[Path]:
+def run_all(*, write: bool, root: Optional[Path] = None) -> list[Path]:
     r = root or REPO_ROOT
     _, manifests_dir, _, _ = layout(r)
     paths = manifest_paths(r)
@@ -245,7 +245,7 @@ def run_all(*, write: bool, root: Path | None = None) -> list[Path]:
     return paths
 
 
-def run_check(root: Path | None = None) -> None:
+def run_check(root: Optional[Path] = None) -> None:
     r = root or REPO_ROOT
     _, manifests_dir, templates_dir, _ = layout(r)
     paths = manifest_paths(r)
@@ -269,7 +269,7 @@ def run_check(root: Path | None = None) -> None:
             )
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(argv: Optional[list[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Compose Cursor rule templates from manifests.")
     parser.add_argument("--all", action="store_true", help="process all manifests/*.yml")
     parser.add_argument("--manifest", type=Path, help="single manifest file")
