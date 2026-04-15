@@ -23,7 +23,7 @@ python scripts/sync.py --compose-first --yes /path/to/new-project hono-cloudflar
 
 ## Public Templates
 
-Current manifest-backed template IDs:
+Current public stacks include:
 
 - `cloudflare-workers`
 - `hono`
@@ -34,7 +34,7 @@ Current manifest-backed template IDs:
 - `ruby`
 - `ruby-middleman`
 - `rust`
-- `sql1`
+- `cloudflare-sql1`
 - `tailwind`
 
 ## Install Without Clone (GitHub)
