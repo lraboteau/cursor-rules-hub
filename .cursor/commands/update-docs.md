@@ -4,7 +4,7 @@ Synchronize project documentation after implementation changes.
 
 ## Objective
 
-Keep planning, rules, skills, and user-facing documentation consistent with the latest implementation work.
+Keep planning, rules, skills, changelog entries, and user-facing documentation consistent with the latest implementation work.
 
 ## Constraints
 
@@ -12,12 +12,12 @@ Keep planning, rules, skills, and user-facing documentation consistent with the 
 - Ensure every documentation file under `.cursor/` is in English (no mixed-language sections).
 - Prefer small, targeted edits.
 - Do not modify unrelated files.
-- Keep terminology consistent across plans, rules, skills, `AGENTS.md`, and `README.md`.
+- Keep terminology consistent across plans, rules, skills, `CHANGELOG.md`, `AGENTS.md`, and `README.md`.
 
 ## Inputs
 
 - Current task context and implementation outcome.
-- Existing docs in `.cursor/plans/`, `.cursor/rules/`, `.cursor/skills/`, `.cursor/commands/`, `AGENTS.md`, and `README.md`.
+- Existing docs in `.cursor/plans/`, `.cursor/rules/`, `.cursor/skills/`, `.cursor/commands/`, `CHANGELOG.md`, `AGENTS.md`, and `README.md`.
 
 ## Workflow
 
@@ -42,13 +42,14 @@ Keep planning, rules, skills, and user-facing documentation consistent with the 
 - `.cursor/rules/`: update only where behavior or standards changed; keep frontmatter valid.
 - `.cursor/skills/`: update only where triggers/workflows changed; preserve valid `name`/`description`.
 - `.cursor/commands/`: update operational steps and guardrails when workflows changed.
+- `CHANGELOG.md`: add or update entries when implementation changes impact behavior, workflows, templates, or operational expectations.
 - `AGENTS.md`: update only if agent operating expectations changed.
 - `README.md`: update only if user/developer-facing workflow changed.
 
 ### 4) Keep quality and terminology consistent
 
 - Keep edits small and focused.
-- Keep terminology consistent across plans, rules, skills, commands, `AGENTS.md`, and `README.md`.
+- Keep terminology consistent across plans, rules, skills, commands, `CHANGELOG.md`, `AGENTS.md`, and `README.md`.
 - Ensure instructions are actionable and non-duplicative.
 
 ### 5) Verify consistency
@@ -56,6 +57,7 @@ Keep planning, rules, skills, and user-facing documentation consistent with the 
 - Check for contradictions across updated files.
 - Normalize key terms so the same concept uses the same wording everywhere.
 - Confirm all cross-references point to existing files.
+- Confirm `CHANGELOG.md` entries are grouped under `Unreleased` and reflect implemented behavior changes.
 - Confirm `.cursor/` documentation content is fully English:
   - plans, rules, skills, and commands;
   - titles, bullet text, checklists, and examples;
@@ -65,7 +67,7 @@ Keep planning, rules, skills, and user-facing documentation consistent with the 
 
 - Updated only impacted documentation targets.
 - Rules, skills, and commands are aligned where needed.
-- `AGENTS.md` and `README.md` are updated only when required by behavioral changes.
+- `CHANGELOG.md`, `AGENTS.md`, and `README.md` are updated only when required by behavioral changes.
 - All `.cursor/` documentation files are fully in English.
 - No outdated or conflicting guidance remains.
 - Documentation changes stay scoped to impacted areas only.
