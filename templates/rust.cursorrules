@@ -1,8 +1,8 @@
 <!--
 cursor-rules-hub: generated — do not edit by hand
-manifest: ruby-middleman
-manifest-path: manifests/ruby-middleman.yml
-fingerprint: sha256:90a3dadf7a53dc116fd22834e1826545674adb75f3526c7e3a44142349c42582
+manifest: rust
+manifest-path: manifests/rust.yml
+fingerprint: sha256:81100d673ecbf518deb97aa9132059b619c76486144eea96acba2265aa9dc8fb
 -->
 
 # Hub identity
@@ -22,23 +22,37 @@ This file is composed into every public template unless `core: false` is set in 
 - Keep edits minimal and scoped to the task.
 - Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
 
-# Ruby conventions
+# REST API Best Practices
 
 
-- Follow the style guide enforced by RuboCop in the repository; do not fight existing cops in drive-by changes.
-- Prefer small methods and meaningful names over comments that restate the code.
-- Keep gem versions pinned consistently with the project’s existing Bundler workflow.
-- Use the official Ruby repository (`https://github.com/ruby/ruby`) as the language reference point for behavior, compatibility, and core feature expectations.
-- Prefer patterns compatible with current maintained Ruby releases and avoid relying on deprecated semantics.
+- Design resource-oriented endpoints with consistent naming and plural nouns.
+- Keep HTTP method semantics explicit (`GET` read-only, `POST` create, `PUT/PATCH` update, `DELETE` remove).
+- Use stable, predictable response contracts for success and error payloads across endpoints.
+- Map status codes intentionally (`200/201/204`, `400/401/403/404/409/422`, `429`, `5xx`) based on API behavior.
+- Version APIs deliberately (for example `/api/v1`) and avoid breaking changes without migration strategy.
+- Validate and sanitize all external input (path params, query, headers, body) before domain logic.
+- Require authentication/authorization checks before protected operations.
+- Never expose secrets, stack traces, tokens, or sensitive internals in responses or logs.
+- Use pagination, filtering, and sorting conventions consistently for list endpoints.
+- Prefer idempotent behavior where relevant (especially retries and update/delete flows).
+- Apply rate limiting and abuse protection on exposed endpoints when risk is non-trivial.
+- Emit structured logs and correlation identifiers to trace request lifecycle and failures.
+- Define and test error handling paths, not only success paths.
 
-# Middleman static sites
+# Rust conventions
 
 
-- Respect Middleman’s source and build directories; avoid ad-hoc writes outside `build/` outputs.
-- Keep front matter and data files organized; prefer YAML data over duplicated literals across templates.
-- When editing helpers, keep them free of global mutable state across builds.
-- Use the official Middleman organization (`https://github.com/middleman/`) as the reference source for framework behavior, supported extensions, and maintenance status.
-- Prefer conventions compatible with actively maintained Middleman components and document any dependency on archived or stale plugins.
+- Prefer stable Rust and the existing edition/toolchain configured by the repository before introducing newer language features.
+- Model ownership and lifetimes clearly; prefer borrowing over cloning on hot paths unless clarity or safety requires otherwise.
+- Keep `Result`-based error propagation explicit (`thiserror`/`anyhow` only when consistent with the project) and avoid `unwrap()` in production code.
+- Organize crates/modules around clear domain boundaries and keep public APIs small and well-documented.
+
+# Testing Rust features
+
+
+- Prefer `cargo test` unit tests close to implementation and integration tests under `tests/` for public behavior.
+- Keep tests deterministic: avoid timing-sensitive assertions and isolate filesystem/network side effects with temp resources and mocks.
+- Add compile-time checks (`clippy`, `fmt`, feature-matrix tests) when stack changes impact API surface or conditional builds.
 
 # Security Best Practices
 

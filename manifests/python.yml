@@ -1,15 +1,16 @@
 version: 1
 core: true
 template:
-  id: ruby
-  title: Ruby application
+  id: python
+  title: Python application
 priority:
   - type: stack-base
     modules:
       - fundamentals/rest-api
-      - stacks/ruby/base
+      - stacks/python/base
   - type: stack-extension
-    modules: []
+    modules:
+      - stacks/python/testing
   - type: cross-cutting
     modules:
       - cross-cutting/security

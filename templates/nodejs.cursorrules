@@ -1,8 +1,8 @@
 <!--
 cursor-rules-hub: generated — do not edit by hand
-manifest: ruby-middleman
-manifest-path: manifests/ruby-middleman.yml
-fingerprint: sha256:90a3dadf7a53dc116fd22834e1826545674adb75f3526c7e3a44142349c42582
+manifest: nodejs
+manifest-path: manifests/nodejs.yml
+fingerprint: sha256:63e71301e721f3536655bd70d37b30b23275a42efb204db02f4e81a202c40236
 -->
 
 # Hub identity
@@ -22,23 +22,37 @@ This file is composed into every public template unless `core: false` is set in 
 - Keep edits minimal and scoped to the task.
 - Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
 
-# Ruby conventions
+# REST API Best Practices
 
 
-- Follow the style guide enforced by RuboCop in the repository; do not fight existing cops in drive-by changes.
-- Prefer small methods and meaningful names over comments that restate the code.
-- Keep gem versions pinned consistently with the project’s existing Bundler workflow.
-- Use the official Ruby repository (`https://github.com/ruby/ruby`) as the language reference point for behavior, compatibility, and core feature expectations.
-- Prefer patterns compatible with current maintained Ruby releases and avoid relying on deprecated semantics.
+- Design resource-oriented endpoints with consistent naming and plural nouns.
+- Keep HTTP method semantics explicit (`GET` read-only, `POST` create, `PUT/PATCH` update, `DELETE` remove).
+- Use stable, predictable response contracts for success and error payloads across endpoints.
+- Map status codes intentionally (`200/201/204`, `400/401/403/404/409/422`, `429`, `5xx`) based on API behavior.
+- Version APIs deliberately (for example `/api/v1`) and avoid breaking changes without migration strategy.
+- Validate and sanitize all external input (path params, query, headers, body) before domain logic.
+- Require authentication/authorization checks before protected operations.
+- Never expose secrets, stack traces, tokens, or sensitive internals in responses or logs.
+- Use pagination, filtering, and sorting conventions consistently for list endpoints.
+- Prefer idempotent behavior where relevant (especially retries and update/delete flows).
+- Apply rate limiting and abuse protection on exposed endpoints when risk is non-trivial.
+- Emit structured logs and correlation identifiers to trace request lifecycle and failures.
+- Define and test error handling paths, not only success paths.
 
-# Middleman static sites
+# Node.js conventions
 
 
-- Respect Middleman’s source and build directories; avoid ad-hoc writes outside `build/` outputs.
-- Keep front matter and data files organized; prefer YAML data over duplicated literals across templates.
-- When editing helpers, keep them free of global mutable state across builds.
-- Use the official Middleman organization (`https://github.com/middleman/`) as the reference source for framework behavior, supported extensions, and maintenance status.
-- Prefer conventions compatible with actively maintained Middleman components and document any dependency on archived or stale plugins.
+- Target active LTS Node.js unless the repository explicitly pins another runtime.
+- Prefer ESM or CommonJS consistently with the existing codebase; avoid mixing module systems without clear boundaries.
+- Keep async flows explicit with `async`/`await`, handle promise rejections centrally, and avoid unhandled background work.
+- Align dependency and script workflows with the project package manager (`npm`, `pnpm`, or `yarn`) and lockfile conventions.
+
+# Testing Node.js features
+
+
+- Prefer the test runner already used by the project (`vitest`, `jest`, or Node test runner) and keep configuration centralized.
+- Mock external I/O (HTTP, queues, databases) by default; keep integration tests explicit, isolated, and reproducible.
+- Add CLI and script-level tests when repository workflows depend on package scripts or build tooling behavior.
 
 # Security Best Practices
 

@@ -1,15 +1,16 @@
 version: 1
 core: true
 template:
-  id: ruby
-  title: Ruby application
+  id: nodejs
+  title: Node.js application
 priority:
   - type: stack-base
     modules:
       - fundamentals/rest-api
-      - stacks/ruby/base
+      - stacks/nodejs/base
   - type: stack-extension
-    modules: []
+    modules:
+      - stacks/nodejs/testing
   - type: cross-cutting
     modules:
       - cross-cutting/security

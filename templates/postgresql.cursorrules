@@ -1,8 +1,8 @@
 <!--
 cursor-rules-hub: generated — do not edit by hand
-manifest: ruby-middleman
-manifest-path: manifests/ruby-middleman.yml
-fingerprint: sha256:90a3dadf7a53dc116fd22834e1826545674adb75f3526c7e3a44142349c42582
+manifest: postgresql
+manifest-path: manifests/postgresql.yml
+fingerprint: sha256:525ed7b8789db40bd96dcca290d7ac1755c3d92f0d3abe322968cd5a498b57f9
 -->
 
 # Hub identity
@@ -22,23 +22,26 @@ This file is composed into every public template unless `core: false` is set in 
 - Keep edits minimal and scoped to the task.
 - Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
 
-# Ruby conventions
+# PostgreSQL Conventions
 
 
-- Follow the style guide enforced by RuboCop in the repository; do not fight existing cops in drive-by changes.
-- Prefer small methods and meaningful names over comments that restate the code.
-- Keep gem versions pinned consistently with the project’s existing Bundler workflow.
-- Use the official Ruby repository (`https://github.com/ruby/ruby`) as the language reference point for behavior, compatibility, and core feature expectations.
-- Prefer patterns compatible with current maintained Ruby releases and avoid relying on deprecated semantics.
+- Use explicit `snake_case` names for tables, columns, constraints, indexes, and migration identifiers.
+- Define integrity constraints intentionally (`PRIMARY KEY`, `FOREIGN KEY`, `CHECK`, `NOT NULL`) and specify `ON DELETE`/`ON UPDATE` behavior for relationships.
+- Manage schema evolution through forward-only, versioned migrations; document high-risk or destructive steps with rollback/recovery guidance.
+- Require parameterized queries/prepared statements for dynamic values in application code; never rely on string interpolation for SQL.
+- Keep transaction boundaries explicit for multi-step writes and enforce idempotent-safe behavior where retries are expected.
+- Avoid destructive operations (`DROP`, mass deletes, type rewrites) outside explicit, reviewed migrations.
+- Create indexes based on observed query patterns (filters/joins/order), and validate impact with `EXPLAIN`/`EXPLAIN ANALYZE`.
+- Keep schema types, defaults, enum/check values, and application-level contracts aligned across migrations and code.
 
-# Middleman static sites
+# Testing PostgreSQL Features
 
 
-- Respect Middleman’s source and build directories; avoid ad-hoc writes outside `build/` outputs.
-- Keep front matter and data files organized; prefer YAML data over duplicated literals across templates.
-- When editing helpers, keep them free of global mutable state across builds.
-- Use the official Middleman organization (`https://github.com/middleman/`) as the reference source for framework behavior, supported extensions, and maintenance status.
-- Prefer conventions compatible with actively maintained Middleman components and document any dependency on archived or stale plugins.
+- Add migration tests that verify final schema shape, constraints, and index presence after applying forward migrations.
+- Cover error paths, not only success paths: constraint violations, FK behavior, conflict handling, and transaction rollback behavior.
+- Use deterministic fixtures/seed data and isolate test datasets per case to avoid coupling and flaky outcomes.
+- Validate performance-sensitive queries with realistic filter/join patterns to catch missing indexes before release.
+- Test retry behavior for transient failures with bounded attempts, backoff, and idempotent-safe operations only.
 
 # Security Best Practices
 
@@ -80,23 +83,6 @@ This file is composed into every public template unless `core: false` is set in 
 - Respect reduced motion and avoid animation that harms readability or usability.
 - Include accessibility checks in delivery workflow (linting, automated scans, and targeted manual keyboard/screen-reader checks).
 - Add or update tests when interaction or UI structure changes can impact accessibility behavior.
-
-# JSON-LD Best Practices
-
-
-- Use valid JSON-LD with `@context` and a Schema.org `@type` appropriate for the page intent.
-- Keep structured data aligned with visible page content; never add misleading or unsupported claims.
-- Prefer specific Schema.org types and required/recommended properties over generic fallback shapes.
-- Keep identifiers stable (`@id`, canonical URLs) to avoid duplicate or conflicting entities.
-- Use absolute URLs for links and media references where Schema.org consumers expect resolvable URLs.
-- Ensure date/time fields use valid ISO-8601 formats and consistent timezone handling.
-- Keep organization, author, and publisher entities consistent across pages and reusable where possible.
-- Validate nested objects and array structures to avoid invalid property placements.
-- Avoid null, empty, placeholder, or deprecated properties in production payloads.
-- Serialize JSON-LD safely in templates/scripts and prevent malformed output from string concatenation.
-- Escape user-generated data before injecting it into JSON-LD payloads.
-- Validate generated JSON-LD against Schema.org/Google tooling in CI or release checks when feasible.
-- Add or update tests for critical JSON-LD generators to catch contract regressions.
 
 # Performance Best Practices
 

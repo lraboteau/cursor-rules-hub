@@ -25,7 +25,7 @@ Usage:
                          [--base-url URL] [--backup] [--yes]
 
 Options:
-  --template NAME         Template short name (e.g. hono-workers) or file name.
+  --template NAME         Template short name (e.g. hono-cloudflare-workers) or file name.
   --target PATH           Project directory or explicit output file path. Default: .
   --ref REF               Git ref (branch/tag/SHA). Default: main
   --owner-repo OWNER/REPO GitHub owner/repo. Default: laurent/cursor-rules-hub
@@ -35,7 +35,7 @@ Options:
   -h, --help              Show this help.
 
 Examples:
-  install-cursorrules.sh --template hono-workers --target /path/to/new-project --yes
+  install-cursorrules.sh --template hono-cloudflare-workers --target /path/to/new-project --yes
   install-cursorrules.sh --template ruby --target . --ref v1.0.0 --backup
 EOF
 }

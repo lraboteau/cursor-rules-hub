@@ -1,15 +1,16 @@
 version: 1
 core: true
 template:
-  id: ruby
-  title: Ruby application
+  id: cloudflare-workers
+  title: Cloudflare Workers runtime
 priority:
   - type: stack-base
     modules:
-      - fundamentals/rest-api
-      - stacks/ruby/base
+      - fundamentals/strict-typescript
+      - stacks/cloudflare-workers/base
   - type: stack-extension
-    modules: []
+    modules:
+      - stacks/cloudflare-workers/testing
   - type: cross-cutting
     modules:
       - cross-cutting/security

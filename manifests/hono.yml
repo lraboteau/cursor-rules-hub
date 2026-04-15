@@ -1,15 +1,17 @@
 version: 1
 core: true
 template:
-  id: ruby
-  title: Ruby application
+  id: hono
+  title: Hono application
 priority:
   - type: stack-base
     modules:
+      - fundamentals/strict-typescript
       - fundamentals/rest-api
-      - stacks/ruby/base
+      - stacks/hono/base
   - type: stack-extension
-    modules: []
+    modules:
+      - stacks/hono/testing
   - type: cross-cutting
     modules:
       - cross-cutting/security

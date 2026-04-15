@@ -14,6 +14,8 @@ priority:
     modules:
       - cross-cutting/security
       - cross-cutting/testing
+      - cross-cutting/accessibility
+      - cross-cutting/json-ld
       - cross-cutting/performance
       - cross-cutting/docs
       - cross-cutting/cursor-ide-basics

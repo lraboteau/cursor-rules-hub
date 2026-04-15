@@ -1,15 +1,16 @@
 version: 1
 core: true
 template:
-  id: ruby
-  title: Ruby application
+  id: rust
+  title: Rust application
 priority:
   - type: stack-base
     modules:
       - fundamentals/rest-api
-      - stacks/ruby/base
+      - stacks/rust/base
   - type: stack-extension
-    modules: []
+    modules:
+      - stacks/rust/testing
   - type: cross-cutting
     modules:
       - cross-cutting/security

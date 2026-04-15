@@ -1,21 +1,20 @@
 version: 1
 core: true
 template:
-  id: ruby
-  title: Ruby application
+  id: sql1
+  title: Cloudflare SQL1 stack
 priority:
   - type: stack-base
     modules:
-      - fundamentals/rest-api
-      - stacks/ruby/base
+      - stacks/cloudflare-sql1/base
   - type: stack-extension
-    modules: []
+    modules:
+      - stacks/cloudflare-sql1/testing
   - type: cross-cutting
     modules:
       - cross-cutting/security
       - cross-cutting/testing
       - cross-cutting/accessibility
-      - cross-cutting/json-ld
       - cross-cutting/performance
       - cross-cutting/docs
       - cross-cutting/cursor-ide-basics

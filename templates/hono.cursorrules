@@ -1,8 +1,8 @@
 <!--
 cursor-rules-hub: generated — do not edit by hand
-manifest: ruby-middleman
-manifest-path: manifests/ruby-middleman.yml
-fingerprint: sha256:90a3dadf7a53dc116fd22834e1826545674adb75f3526c7e3a44142349c42582
+manifest: hono
+manifest-path: manifests/hono.yml
+fingerprint: sha256:a122a40e82a7214ee14846f229da65b75c52da572cc51f0c1e0607d06556def7
 -->
 
 # Hub identity
@@ -22,23 +22,57 @@ This file is composed into every public template unless `core: false` is set in 
 - Keep edits minimal and scoped to the task.
 - Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
 
-# Ruby conventions
+# TypeScript Best Practices
 
 
-- Follow the style guide enforced by RuboCop in the repository; do not fight existing cops in drive-by changes.
-- Prefer small methods and meaningful names over comments that restate the code.
-- Keep gem versions pinned consistently with the project’s existing Bundler workflow.
-- Use the official Ruby repository (`https://github.com/ruby/ruby`) as the language reference point for behavior, compatibility, and core feature expectations.
-- Prefer patterns compatible with current maintained Ruby releases and avoid relying on deprecated semantics.
+- Prefer explicit domain types and interfaces over loose structural typing in core flows.
+- Avoid `any`; use `unknown` with narrowing when type certainty is not available.
+- Keep strict null handling explicit and guard nullable values before use.
+- Model enums and controlled value sets with string unions or `as const` objects intentionally.
+- Use discriminated unions for stateful or variant-heavy logic instead of fragile flag combinations.
+- Keep function signatures precise: typed inputs, typed outputs, and no hidden side effects.
+- Prefer small reusable utility types over deeply nested ad-hoc generic complexity.
+- Validate external or untrusted data at boundaries before casting to internal types.
+- Keep runtime schema expectations aligned with TypeScript types to avoid false safety.
+- Avoid unsafe non-null assertions (`!`) unless invariants are explicit and documented by logic.
+- Type async boundaries clearly and handle error states explicitly.
+- Use typed environment/binding objects for platform resources rather than string-based access.
+- Add or update tests when type-level refactors could alter runtime behavior.
 
-# Middleman static sites
+# REST API Best Practices
 
 
-- Respect Middleman’s source and build directories; avoid ad-hoc writes outside `build/` outputs.
-- Keep front matter and data files organized; prefer YAML data over duplicated literals across templates.
-- When editing helpers, keep them free of global mutable state across builds.
-- Use the official Middleman organization (`https://github.com/middleman/`) as the reference source for framework behavior, supported extensions, and maintenance status.
-- Prefer conventions compatible with actively maintained Middleman components and document any dependency on archived or stale plugins.
+- Design resource-oriented endpoints with consistent naming and plural nouns.
+- Keep HTTP method semantics explicit (`GET` read-only, `POST` create, `PUT/PATCH` update, `DELETE` remove).
+- Use stable, predictable response contracts for success and error payloads across endpoints.
+- Map status codes intentionally (`200/201/204`, `400/401/403/404/409/422`, `429`, `5xx`) based on API behavior.
+- Version APIs deliberately (for example `/api/v1`) and avoid breaking changes without migration strategy.
+- Validate and sanitize all external input (path params, query, headers, body) before domain logic.
+- Require authentication/authorization checks before protected operations.
+- Never expose secrets, stack traces, tokens, or sensitive internals in responses or logs.
+- Use pagination, filtering, and sorting conventions consistently for list endpoints.
+- Prefer idempotent behavior where relevant (especially retries and update/delete flows).
+- Apply rate limiting and abuse protection on exposed endpoints when risk is non-trivial.
+- Emit structured logs and correlation identifiers to trace request lifecycle and failures.
+- Define and test error handling paths, not only success paths.
+
+# Hono Best Practices
+
+
+- Keep route handlers thin: parse and validate input, call domain logic, and return typed responses.
+- Use explicit route grouping/versioning (for example `/api/v1/...`) and consistent naming conventions.
+- Validate all external input (params, query, headers, JSON body) before business logic.
+- Return consistent error payloads and status codes; avoid leaking stack traces or internal details.
+- Centralize error handling with middleware (`app.onError`) and map known error classes to stable responses.
+- Use middleware intentionally: auth first, validation/context next, business handlers last.
+- Prefer request-scoped context values over mutable globals; keep handlers stateless where possible.
+
+# Testing Hono Features
+
+
+- Add route-level tests for success paths, validation failures, auth failures, and error mapping behavior.
+- Keep tests hermetic by mocking external I/O and integration boundaries when unit behavior is the target.
+- Verify middleware ordering and request context behavior in tests when auth/validation chains change.
 
 # Security Best Practices
 

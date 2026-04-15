@@ -40,7 +40,7 @@ flowchart TD
 - `template.title`: human-readable title for the generated header comment.
 - `priority`: ordered list of blocks. Each block has:
   - `type`: one of `stack-base`, `stack-extension`, `cross-cutting`.
-  - `modules`: list of module paths relative to `modules/` **without** `.md` (e.g. `stacks/hono-workers/base`).
+  - `modules`: list of module paths relative to `modules/` **without** `.md` (e.g. `stacks/hono/base`).
 
 ## Module contract
 

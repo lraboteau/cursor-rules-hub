@@ -1,8 +1,8 @@
 <!--
 cursor-rules-hub: generated — do not edit by hand
-manifest: ruby-middleman
-manifest-path: manifests/ruby-middleman.yml
-fingerprint: sha256:90a3dadf7a53dc116fd22834e1826545674adb75f3526c7e3a44142349c42582
+manifest: tailwind
+manifest-path: manifests/tailwind.yml
+fingerprint: sha256:e05993e77743ce4f2dec81c9c013385d368053dd64eb68317e4bc3c3996b68c4
 -->
 
 # Hub identity
@@ -22,23 +22,29 @@ This file is composed into every public template unless `core: false` is set in 
 - Keep edits minimal and scoped to the task.
 - Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
 
-# Ruby conventions
+# Tailwind Best Practices
 
 
-- Follow the style guide enforced by RuboCop in the repository; do not fight existing cops in drive-by changes.
-- Prefer small methods and meaningful names over comments that restate the code.
-- Keep gem versions pinned consistently with the project’s existing Bundler workflow.
-- Use the official Ruby repository (`https://github.com/ruby/ruby`) as the language reference point for behavior, compatibility, and core feature expectations.
-- Prefer patterns compatible with current maintained Ruby releases and avoid relying on deprecated semantics.
+- Keep utility classes readable and predictable by using a consistent class ordering strategy.
+- Avoid long, duplicated class strings; extract reusable class groups into shared components or helpers.
+- Prefer semantic component boundaries over repeating the same utility blocks across files.
+- Keep conditional classes explicit and composable (for example with `clsx`/`cva` patterns) instead of inline string sprawl.
+- Use design tokens and Tailwind theme scales (`spacing`, `colors`, `fontSize`) before arbitrary values.
+- Use arbitrary values only when necessary and document why when intent is not obvious.
+- Define interactive and accessibility states intentionally (`hover`, `focus-visible`, `disabled`, `aria-*` where relevant).
+- Keep responsive behavior explicit (`sm`/`md`/`lg`...) and avoid conflicting breakpoint overrides.
+- Prefer stable layout primitives (`flex`, `grid`, `gap`) over brittle spacing hacks.
+- Ensure dark mode and contrast expectations are handled consistently where the UI supports theme switching.
+- Keep class decisions in the component layer; avoid mixing style concerns into unrelated business logic.
+- Add or update UI tests/snapshots when class composition changes impact rendering or interaction behavior.
 
-# Middleman static sites
+# Testing Tailwind Features
 
 
-- Respect Middleman’s source and build directories; avoid ad-hoc writes outside `build/` outputs.
-- Keep front matter and data files organized; prefer YAML data over duplicated literals across templates.
-- When editing helpers, keep them free of global mutable state across builds.
-- Use the official Middleman organization (`https://github.com/middleman/`) as the reference source for framework behavior, supported extensions, and maintenance status.
-- Prefer conventions compatible with actively maintained Middleman components and document any dependency on archived or stale plugins.
+- Prefer component-level tests that verify key class composition for variants, states, and responsive behavior.
+- Add snapshot or visual regression coverage when utility changes can affect layout or interaction affordances.
+- Cover interactive and accessibility states (`hover`, `focus-visible`, `disabled`, `aria-*`) to prevent styling regressions.
+- Keep tests resilient by asserting meaningful class groups/behavior rather than brittle full-string matches when possible.
 
 # Security Best Practices
 

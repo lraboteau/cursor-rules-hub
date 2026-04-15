@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import textwrap
+from collections import defaultdict
 from pathlib import Path
 
 import pytest
@@ -120,3 +121,19 @@ def test_validate_manifest_rejects_bad_version(tmp_path: Path) -> None:
     bad.write_text("version: 2\n", encoding="utf-8")
     with pytest.raises(compose.ComposeError):
         compose.load_manifest(bad)
+
+
+def test_repo_module_titles_are_unique() -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    modules_dir = repo_root / "modules"
+    title_sources: dict[str, list[str]] = defaultdict(list)
+
+    for path in sorted(modules_dir.rglob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        sections = compose.parse_sections(text, source=str(path))
+        for title, _ in sections:
+            key = compose.normalize_title(title)
+            title_sources[key].append(str(path.relative_to(repo_root)))
+
+    duplicates = {k: v for k, v in title_sources.items() if len(v) > 1}
+    assert not duplicates, f"Duplicate top-level section titles detected: {duplicates}"
