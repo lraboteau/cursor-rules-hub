@@ -1,0 +1,89 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: ruby-rails-postgresql-rest-api
+manifest-path: manifests/ruby-rails-postgresql-rest-api.yml
+fingerprint: sha256:0a029ac483d9b01d38d885f4613eea929c4cc41630f77cbda51e3fa888703dcd
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# Ruby Runtime Baseline
+
+
+- Prefer readable Ruby idioms and avoid unnecessary metaprogramming complexity.
+- Keep compatibility expectations explicit when changing language/runtime behavior.
+- Use stable build and execution steps documented by the project.
+- Run `make test` before proposing changes to core behavior.
+
+# Ruby on Rails Baseline
+
+
+- Keep application architecture aligned with Rails MVC conventions and framework defaults.
+- Prefer built-in Rails components (Active Record, Action Pack, Active Job, Action Mailer) before introducing custom framework layers.
+- Keep migrations, models, controllers, and views cohesive with clear domain boundaries.
+- Run `bundle exec rake test` before proposing behavior changes.
+
+# PostgreSQL Baseline
+
+
+- Design schemas with explicit constraints, sensible defaults, and clear ownership of migrations.
+- Prefer parameterized queries and prepared statements to avoid SQL injection and improve plan stability.
+- Create and maintain indexes based on query patterns, not assumptions.
+- Keep transactions explicit and scoped to preserve consistency under concurrent load.
+- Run representative integration tests against PostgreSQL before merge.
+
+# REST API Best Practices
+
+
+- Design resource-oriented endpoints with consistent naming and plural nouns.
+- Keep HTTP method semantics explicit (`GET` read-only, `POST` create, `PUT/PATCH` update, `DELETE` remove).
+- Use stable, predictable response contracts for success and error payloads across endpoints.
+- Map status codes intentionally (`200/201/204`, `400/401/403/404/409/422`, `429`, `5xx`) based on API behavior.
+- Version APIs deliberately (for example `/api/v1`) and avoid breaking changes without migration strategy.
+- Validate and sanitize all external input (path params, query, headers, body) before domain logic.
+- Require authentication/authorization checks before protected operations.
+- Never expose secrets, stack traces, tokens, or sensitive internals in responses or logs.
+- Use pagination, filtering, and sorting conventions consistently for list endpoints.
+- Prefer idempotent behavior where relevant (especially retries and update/delete flows).
+- Apply rate limiting and abuse protection on exposed endpoints when risk is non-trivial.
+- Emit structured logs and correlation identifiers to trace request lifecycle and failures.
+- Define and test error handling paths, not only success paths.
+
+# Ruby Testing Discipline
+
+
+- Add or update tests for every behavior change in parser, VM, stdlib, or tooling.
+- Keep regression tests small, reproducible, and tied to reported issues.
+- Run `make test` and focused suites for impacted components before merge.
+- Treat nondeterministic or platform-specific failures as blockers to release readiness.
+
+# Ruby on Rails Testing Discipline
+
+
+- Add or update tests for models, controllers, jobs, mailers, and integration flows affected by each change.
+- Keep regressions reproducible with focused fixtures and deterministic setup.
+- Run `bundle exec rake test` and targeted suites for impacted frameworks before merge.
+- Treat security-sensitive regressions (auth, params handling, session behavior) as blockers.
+
+# PostgreSQL Testing Discipline
+
+
+- Add tests for migrations, data integrity constraints, and transactional behavior.
+- Validate edge cases around nullability, uniqueness, foreign keys, and cascading operations.
+- Include query performance checks for critical paths, especially after schema/index changes.
+- Keep fixtures deterministic and verify behavior under concurrent access where relevant.

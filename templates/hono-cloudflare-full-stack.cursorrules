@@ -1,0 +1,222 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: hono-cloudflare-full-stack
+manifest-path: manifests/hono-cloudflare-full-stack.yml
+fingerprint: sha256:de13c774978f485dff8601912ed6c5b72725fb4caeb79c7580b733ab6a9b5856
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# Node.js Runtime Baseline
+
+
+- Use modern supported Node.js features and avoid deprecated APIs.
+- Keep changes backward-compatible unless a breaking change is explicitly required.
+- Prefer clear module boundaries and predictable runtime behavior.
+- Use `npm run lint` and `npm run test` before proposing changes.
+
+# TypeScript Compiler Baseline
+
+
+- Favor strict, explicit typing and keep emitted JavaScript predictable and standards-aligned.
+- Prioritize compiler correctness and language-service stability over convenience shortcuts.
+- Keep changes compatible with documented TypeScript behavior and migration guidance.
+- Run `npm test` before proposing behavior changes.
+
+# Hono Framework Baseline
+
+
+- Prefer Web Standard APIs and keep handlers portable across supported runtimes.
+- Keep route handlers focused, composable, and explicit about request/response contracts.
+- Preserve TypeScript-first ergonomics and avoid runtime-specific assumptions by default.
+- Run `npm test` before proposing behavior changes.
+
+# Vite Baseline
+
+
+- Keep dev-server startup and HMR feedback loops fast and predictable.
+- Prefer Vite-native configuration and plugin APIs before adding custom build wrappers.
+- Keep build output optimized and consistent across local, CI, and production environments.
+- Validate compatibility for framework integrations and plugin interactions.
+- Run `npm test` before proposing behavior changes.
+
+# Tailwind CSS Baseline
+
+
+- Prefer utility-first composition with clear, maintainable class patterns over ad-hoc custom CSS.
+- Keep design tokens and configuration centralized to preserve consistency across components.
+- Minimize generated CSS by configuring content scanning paths accurately.
+- Use framework-native patterns for variants, responsive behavior, and stateful UI styling.
+- Run `npm test` before proposing behavior changes.
+
+# Cloudflare Workers Baseline
+
+
+- Keep `compatibility_date` current and enable `nodejs_compat` when Node.js APIs are required.
+- Use Cloudflare bindings directly (KV, R2, D1, Queues, Durable Objects) instead of external REST hops when possible.
+- Avoid global mutable state because Worker isolates are reused across requests.
+- Prefer streaming request/response bodies to reduce memory pressure and improve latency.
+- Always `await` promises or use `ctx.waitUntil(...)` for background work.
+
+# Cloudflare D1 SQL Baseline
+
+
+- Access D1 through Worker bindings and prepared statements instead of string-concatenated SQL.
+- Keep schema and query design index-aware to preserve low-latency reads and predictable throughput.
+- Use D1-compatible SQLite features deliberately (JSON/FTS extensions where justified by use case).
+- Batch large migrations and bulk updates/deletes to stay within Workers CPU and execution limits.
+- Prefer binding names in automation and migration scripts to keep deployments portable across environments.
+
+# JSON-LD Baseline
+
+
+- Keep JSON-LD contexts explicit, versioned, and stable to preserve semantic interoperability.
+- Validate linked-data structures against relevant specs and schema expectations before release.
+- Prefer clear examples and documentation for context, framing, and compaction/expansion behavior.
+- Keep playground and documentation behavior aligned with production parsing rules.
+- Run `npm test` before proposing behavior changes.
+
+# Semantic Web Baseline
+
+
+- Model data with explicit vocabularies and stable IRIs to preserve long-term interoperability.
+- Keep JSON-LD, RDF, and schema definitions aligned across documentation, examples, and production payloads.
+- Prefer standards-compliant serialization and parsing behavior over implementation-specific shortcuts.
+- Document context usage, term definitions, and compatibility guarantees for downstream consumers.
+- Run semantic validation checks before release.
+
+# REST API Best Practices
+
+
+- Design resource-oriented endpoints with consistent naming and plural nouns.
+- Keep HTTP method semantics explicit (`GET` read-only, `POST` create, `PUT/PATCH` update, `DELETE` remove).
+- Use stable, predictable response contracts for success and error payloads across endpoints.
+- Map status codes intentionally (`200/201/204`, `400/401/403/404/409/422`, `429`, `5xx`) based on API behavior.
+- Version APIs deliberately (for example `/api/v1`) and avoid breaking changes without migration strategy.
+- Validate and sanitize all external input (path params, query, headers, body) before domain logic.
+- Require authentication/authorization checks before protected operations.
+- Never expose secrets, stack traces, tokens, or sensitive internals in responses or logs.
+- Use pagination, filtering, and sorting conventions consistently for list endpoints.
+- Prefer idempotent behavior where relevant (especially retries and update/delete flows).
+- Apply rate limiting and abuse protection on exposed endpoints when risk is non-trivial.
+- Emit structured logs and correlation identifiers to trace request lifecycle and failures.
+- Define and test error handling paths, not only success paths.
+
+# SEO Fundamentals
+
+
+- Ensure each indexable page has a unique, descriptive `<title>` and meta description.
+- Use semantic HTML headings (`h1` to `h6`) with a clear information hierarchy.
+- Publish canonical URLs and prevent duplicate-content variants from being indexed.
+- Implement structured data (JSON-LD) for relevant entities and validate it regularly.
+- Optimize performance signals that affect search visibility, especially Core Web Vitals.
+- Keep robots directives and sitemap coverage consistent with crawl/indexing intent.
+
+# Node.js Testing Discipline
+
+
+- Add or update tests for every behavioral change.
+- Keep test coverage focused on runtime behavior and edge cases.
+- Run `python3 -m pytest -q` and project-native tests before merge.
+- Treat flaky tests as release blockers until stabilized.
+
+# TypeScript Testing Discipline
+
+
+- Add or update tests for parser, checker, emitter, and language-service behaviors affected by each change.
+- Keep regression tests reproducible and scoped to observable compiler outcomes.
+- Run `npm test` and targeted suites for impacted compiler/language-service paths.
+- Treat crashes, serious regressions, and security issues as release blockers.
+
+# Hono Testing Discipline
+
+
+- Add tests for routing behavior, middleware chains, and runtime compatibility paths.
+- Keep tests deterministic and cover edge cases for headers, params, and body parsing.
+- Run `npm test` and targeted runtime tests for impacted areas before merge.
+- Treat performance regressions in routing and middleware as release blockers.
+
+# Vite Testing Discipline
+
+
+- Add tests for dev server behavior, HMR correctness, and build output regressions.
+- Cover plugin API interactions and framework-specific integration paths.
+- Keep test fixtures small and representative of real-world frontend setups.
+- Run `npm test` and targeted integration suites for affected packages before merge.
+
+# Tailwind CSS Testing Discipline
+
+
+- Add tests for class generation behavior, plugin interactions, and framework integration points.
+- Validate responsive, dark mode, and variant outputs for core UI paths.
+- Keep snapshot and visual-regression tests stable and representative of real usage.
+- Run `npm test` and build checks to catch regressions in generated CSS output.
+
+# Cloudflare Workers Testing Discipline
+
+
+- Add tests for fetch handlers, bindings behavior, and runtime-specific error paths.
+- Validate request/response streaming and large-payload behavior without buffering regressions.
+- Verify background tasks that rely on `waitUntil` and failure/retry handling.
+- Enable and use Workers Logs and Traces to validate production behavior and triage incidents.
+
+# Cloudflare D1 SQL Testing Discipline
+
+
+- Add tests for prepared statement correctness, parameter binding, and expected query results.
+- Verify index usage and query plans for performance-critical paths before release.
+- Test migrations in incremental batches and validate rollback/recovery strategy for failed steps.
+- Validate Workers integration limits (CPU, memory, concurrent D1 connections) under realistic load.
+
+# JSON-LD Testing Discipline
+
+
+- Add tests for context resolution, framing, and transformation edge cases.
+- Keep fixtures representative of real linked-data payloads and interoperability scenarios.
+- Validate documentation/playground examples as executable and semantically correct.
+- Run `npm test` and integration checks for parser and rendering paths before merge.
+
+# Semantic Web Testing Discipline
+
+
+- Add tests for context expansion/compaction, graph equivalence, and framing behavior.
+- Validate RDF output consistency across supported serializations and toolchains.
+- Keep fixtures representative of real linked-data datasets and ontology evolution scenarios.
+- Include compatibility tests for consumers relying on legacy contexts or term aliases.
+
+# Documentation Maintenance
+
+
+- Update user-facing and contributor docs when behavior changes.
+- Keep examples executable and aligned with current CLI and APIs.
+- Prefer concise docs that describe intent, constraints, and verification steps.
+
+# Security Baseline
+
+
+- Never commit secrets, private keys, or credentials.
+- Validate untrusted input at all system boundaries.
+- Follow responsible disclosure guidance for vulnerabilities.
+- Prefer least-privilege defaults for tooling and runtime behavior.
+
+# Performance Guardrails
+
+
+- Measure before optimizing and keep benchmark evidence with changes.
+- Protect hot paths from unnecessary allocations and repeated IO.
+- Track performance regressions in CI or release validation where possible.

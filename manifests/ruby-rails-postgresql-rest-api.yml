@@ -1,0 +1,17 @@
+version: 1
+template:
+  id: ruby-rails-postgresql-rest-api
+  title: Ruby + Ruby on Rails + PostgreSQL + REST API
+priority:
+  - type: stack-base
+    modules:
+      - stacks/ruby/base
+      - stacks/ruby-rails/base
+      - stacks/postgresql/base
+      - fundamentals/rest-api
+  - type: stack-extension
+    modules:
+      - stacks/ruby/testing
+      - stacks/ruby-rails/testing
+      - stacks/postgresql/testing
+

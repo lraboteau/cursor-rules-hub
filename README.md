@@ -30,6 +30,7 @@ Current public stacks include:
 - `esbuild`
 - `github-actions`
 - `hono`
+- `hono-cloudflare-full-stack`
 - `json-ld`
 - `nodejs`
 - `postgresql`
@@ -37,6 +38,7 @@ Current public stacks include:
 - `ruby`
 - `ruby-middleman`
 - `ruby-rails`
+- `ruby-rails-postgresql-rest-api`
 - `rust`
 - `semantic-web`
 - `seo`

@@ -1,0 +1,35 @@
+version: 1
+template:
+  id: hono-cloudflare-full-stack
+  title: Hono + Cloudflare Full Stack
+priority:
+  - type: stack-base
+    modules:
+      - stacks/nodejs/base
+      - stacks/typescript/base
+      - stacks/hono/base
+      - stacks/vite/base
+      - stacks/tailwind/base
+      - stacks/cloudflare-workers/base
+      - stacks/cloudflare-sql1/base
+      - stacks/json-ld/base
+      - stacks/semantic-web/base
+      - fundamentals/rest-api
+      - fundamentals/seo
+  - type: stack-extension
+    modules:
+      - stacks/nodejs/testing
+      - stacks/typescript/testing
+      - stacks/hono/testing
+      - stacks/vite/testing
+      - stacks/tailwind/testing
+      - stacks/cloudflare-workers/testing
+      - stacks/cloudflare-sql1/testing
+      - stacks/json-ld/testing
+      - stacks/semantic-web/testing
+  - type: cross-cutting
+    modules:
+      - cross-cutting/docs
+      - cross-cutting/security
+      - cross-cutting/performance
+
