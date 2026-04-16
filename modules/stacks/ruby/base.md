@@ -1,7 +1,6 @@
-# Ruby conventions
+# Ruby Runtime Baseline
 
-- Follow the style guide enforced by RuboCop in the repository; do not fight existing cops in drive-by changes.
-- Prefer small methods and meaningful names over comments that restate the code.
-- Keep gem versions pinned consistently with the project’s existing Bundler workflow.
-- Use the official Ruby repository (`https://github.com/ruby/ruby`) as the language reference point for behavior, compatibility, and core feature expectations.
-- Prefer patterns compatible with current maintained Ruby releases and avoid relying on deprecated semantics.
+- Prefer readable Ruby idioms and avoid unnecessary metaprogramming complexity.
+- Keep compatibility expectations explicit when changing language/runtime behavior.
+- Use stable build and execution steps documented by the project.
+- Run `make test` before proposing changes to core behavior.

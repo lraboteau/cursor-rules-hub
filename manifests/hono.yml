@@ -1,23 +1,16 @@
 version: 1
-core: true
 template:
   id: hono
-  title: Hono application
+  title: Hono
 priority:
   - type: stack-base
     modules:
-      - fundamentals/strict-typescript
-      - fundamentals/rest-api
       - stacks/hono/base
   - type: stack-extension
     modules:
       - stacks/hono/testing
   - type: cross-cutting
     modules:
-      - cross-cutting/security
-      - cross-cutting/testing
-      - cross-cutting/accessibility
-      - cross-cutting/json-ld
-      - cross-cutting/performance
       - cross-cutting/docs
-      - cross-cutting/cursor-ide-basics
+      - cross-cutting/security
+      - cross-cutting/performance

@@ -1,5 +1,6 @@
-# Testing Hono Features
+# Hono Testing Discipline
 
-- Add route-level tests for success paths, validation failures, auth failures, and error mapping behavior.
-- Keep tests hermetic by mocking external I/O and integration boundaries when unit behavior is the target.
-- Verify middleware ordering and request context behavior in tests when auth/validation chains change.
+- Add tests for routing behavior, middleware chains, and runtime compatibility paths.
+- Keep tests deterministic and cover edge cases for headers, params, and body parsing.
+- Run `npm test` and targeted runtime tests for impacted areas before merge.
+- Treat performance regressions in routing and middleware as release blockers.

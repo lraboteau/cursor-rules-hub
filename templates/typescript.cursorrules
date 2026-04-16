@@ -1,0 +1,61 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: typescript
+manifest-path: manifests/typescript.yml
+fingerprint: sha256:354c0c5dddd04aa088cb313a4349ecf153e8f012a53a69aa26f961bbc399fe21
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# TypeScript Compiler Baseline
+
+
+- Favor strict, explicit typing and keep emitted JavaScript predictable and standards-aligned.
+- Prioritize compiler correctness and language-service stability over convenience shortcuts.
+- Keep changes compatible with documented TypeScript behavior and migration guidance.
+- Run `npm test` before proposing behavior changes.
+
+# TypeScript Testing Discipline
+
+
+- Add or update tests for parser, checker, emitter, and language-service behaviors affected by each change.
+- Keep regression tests reproducible and scoped to observable compiler outcomes.
+- Run `npm test` and targeted suites for impacted compiler/language-service paths.
+- Treat crashes, serious regressions, and security issues as release blockers.
+
+# Documentation Maintenance
+
+
+- Update user-facing and contributor docs when behavior changes.
+- Keep examples executable and aligned with current CLI and APIs.
+- Prefer concise docs that describe intent, constraints, and verification steps.
+
+# Security Baseline
+
+
+- Never commit secrets, private keys, or credentials.
+- Validate untrusted input at all system boundaries.
+- Follow responsible disclosure guidance for vulnerabilities.
+- Prefer least-privilege defaults for tooling and runtime behavior.
+
+# Performance Guardrails
+
+
+- Measure before optimizing and keep benchmark evidence with changes.
+- Protect hot paths from unnecessary allocations and repeated IO.
+- Track performance regressions in CI or release validation where possible.

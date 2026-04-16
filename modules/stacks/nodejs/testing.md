@@ -1,5 +1,6 @@
-# Testing Node.js features
+# Node.js Testing Discipline
 
-- Prefer the test runner already used by the project (`vitest`, `jest`, or Node test runner) and keep configuration centralized.
-- Mock external I/O (HTTP, queues, databases) by default; keep integration tests explicit, isolated, and reproducible.
-- Add CLI and script-level tests when repository workflows depend on package scripts or build tooling behavior.
+- Add or update tests for every behavioral change.
+- Keep test coverage focused on runtime behavior and edge cases.
+- Run `python3 -m pytest -q` and project-native tests before merge.
+- Treat flaky tests as release blockers until stabilized.

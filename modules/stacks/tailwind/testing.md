@@ -1,6 +1,6 @@
-# Testing Tailwind Features
+# Tailwind CSS Testing Discipline
 
-- Prefer component-level tests that verify key class composition for variants, states, and responsive behavior.
-- Add snapshot or visual regression coverage when utility changes can affect layout or interaction affordances.
-- Cover interactive and accessibility states (`hover`, `focus-visible`, `disabled`, `aria-*`) to prevent styling regressions.
-- Keep tests resilient by asserting meaningful class groups/behavior rather than brittle full-string matches when possible.
+- Add tests for class generation behavior, plugin interactions, and framework integration points.
+- Validate responsive, dark mode, and variant outputs for core UI paths.
+- Keep snapshot and visual-regression tests stable and representative of real usage.
+- Run `npm test` and build checks to catch regressions in generated CSS output.

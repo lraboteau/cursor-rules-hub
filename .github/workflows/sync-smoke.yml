@@ -25,7 +25,7 @@ jobs:
           mkdir -p "$tmp/proj"
           python scripts/sync.py --yes "$tmp/proj" ruby
           test -f "$tmp/proj/.cursorrules"
-          python scripts/sync.py --yes --backup "$tmp/proj" hono-cloudflare-workers
+          python scripts/sync.py --yes --backup "$tmp/proj" hono
           test -f "$tmp/proj/.cursorrules.bak"
       - name: Install without clone script smoke
         run: |

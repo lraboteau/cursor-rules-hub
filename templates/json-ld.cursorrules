@@ -1,0 +1,62 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: json-ld
+manifest-path: manifests/json-ld.yml
+fingerprint: sha256:71f6c13c764caa9774c44d3990d966bf7d0835b28a92c13ad44707d6f03a770d
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# JSON-LD Baseline
+
+
+- Keep JSON-LD contexts explicit, versioned, and stable to preserve semantic interoperability.
+- Validate linked-data structures against relevant specs and schema expectations before release.
+- Prefer clear examples and documentation for context, framing, and compaction/expansion behavior.
+- Keep playground and documentation behavior aligned with production parsing rules.
+- Run `npm test` before proposing behavior changes.
+
+# JSON-LD Testing Discipline
+
+
+- Add tests for context resolution, framing, and transformation edge cases.
+- Keep fixtures representative of real linked-data payloads and interoperability scenarios.
+- Validate documentation/playground examples as executable and semantically correct.
+- Run `npm test` and integration checks for parser and rendering paths before merge.
+
+# Documentation Maintenance
+
+
+- Update user-facing and contributor docs when behavior changes.
+- Keep examples executable and aligned with current CLI and APIs.
+- Prefer concise docs that describe intent, constraints, and verification steps.
+
+# Security Baseline
+
+
+- Never commit secrets, private keys, or credentials.
+- Validate untrusted input at all system boundaries.
+- Follow responsible disclosure guidance for vulnerabilities.
+- Prefer least-privilege defaults for tooling and runtime behavior.
+
+# Performance Guardrails
+
+
+- Measure before optimizing and keep benchmark evidence with changes.
+- Protect hot paths from unnecessary allocations and repeated IO.
+- Track performance regressions in CI or release validation where possible.

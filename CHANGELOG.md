@@ -6,9 +6,10 @@ This file tracks notable changes to templates, modules, manifests, tooling, and 
 
 ### Added
 
-- New public templates: `cloudflare-workers`, `hono`, `hono-cloudflare-workers`, `nodejs`, `python`, `rust`, `postgresql`, `tailwind`, and `sql1`.
+- New public templates: `cloudflare-sql1`, `cloudflare-workers`, `esbuild`, `github-actions`, `hono`, `json-ld`, `nodejs`, `postgresql`, `python`, `ruby`, `ruby-middleman`, `ruby-rails`, `rust`, `semantic-web`, `seo`, `tailwind`, `typescript`, and `vite`.
 - New reusable modules across fundamentals, stacks, and cross-cutting areas, including `rest-api`, `accessibility`, and `json-ld`.
 - A repository-level `CHANGELOG.md` with an `Unreleased` workflow for ongoing release notes.
+- New Cursor command docs: `.cursor/commands/create-rule-template.md` and `.cursor/commands/update-rule-template.md` for template creation and update workflows.
 
 ### Changed
 

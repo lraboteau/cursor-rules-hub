@@ -1,9 +1,7 @@
-# Cloudflare Workers Foundations
+# Cloudflare Workers Baseline
 
-- Primary stack: Cloudflare Workers + TypeScript; keep runtime-specific behavior aligned with Workers constraints.
-- Treat `wrangler.jsonc` as source of truth; if dashboard changes are made, sync them back to config.
-- Maintain backward compatibility for existing bindings and runtime configuration unless migration is intentional.
-- Access platform resources through typed `env` bindings; never hardcode secrets, tokens, or credentials.
-- Keep environments intentionally separated (`dev`, `staging`, `prod`) with distinct bindings and resource IDs.
-- Prefer structured JSON logs for operational events and include request correlation identifiers when practical.
-- For observability-sensitive changes, ensure Workers logging and tracing settings remain deliberate.
+- Keep `compatibility_date` current and enable `nodejs_compat` when Node.js APIs are required.
+- Use Cloudflare bindings directly (KV, R2, D1, Queues, Durable Objects) instead of external REST hops when possible.
+- Avoid global mutable state because Worker isolates are reused across requests.
+- Prefer streaming request/response bodies to reduce memory pressure and improve latency.
+- Always `await` promises or use `ctx.waitUntil(...)` for background work.

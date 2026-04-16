@@ -1,0 +1,61 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: esbuild
+manifest-path: manifests/esbuild.yml
+fingerprint: sha256:92d9c3671d169cb6d77e97394a5887bcdd27e660539a47678077d30de1900874
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# Esbuild Baseline
+
+
+- Prioritize build performance and keep bundling steps simple and observable.
+- Use built-in esbuild capabilities (JS, TS, JSX, CSS, minification, sourcemaps) before adding extra tooling layers.
+- Keep configuration explicit and avoid hidden magic across CLI, JS API, and Go API usage.
+- Run `npm test` before proposing behavior changes.
+
+# Esbuild Testing Discipline
+
+
+- Add or update tests for bundling correctness, module format handling (ESM/CommonJS), and source map behavior.
+- Keep regression tests deterministic across platforms and runtime targets.
+- Run `npm test` and benchmark-sensitive checks before merge.
+- Treat performance regressions and output compatibility breaks as release blockers.
+
+# Documentation Maintenance
+
+
+- Update user-facing and contributor docs when behavior changes.
+- Keep examples executable and aligned with current CLI and APIs.
+- Prefer concise docs that describe intent, constraints, and verification steps.
+
+# Security Baseline
+
+
+- Never commit secrets, private keys, or credentials.
+- Validate untrusted input at all system boundaries.
+- Follow responsible disclosure guidance for vulnerabilities.
+- Prefer least-privilege defaults for tooling and runtime behavior.
+
+# Performance Guardrails
+
+
+- Measure before optimizing and keep benchmark evidence with changes.
+- Protect hot paths from unnecessary allocations and repeated IO.
+- Track performance regressions in CI or release validation where possible.

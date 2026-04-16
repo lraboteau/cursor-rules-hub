@@ -1,7 +1,6 @@
-# Testing PostgreSQL Features
+# PostgreSQL Testing Discipline
 
-- Add migration tests that verify final schema shape, constraints, and index presence after applying forward migrations.
-- Cover error paths, not only success paths: constraint violations, FK behavior, conflict handling, and transaction rollback behavior.
-- Use deterministic fixtures/seed data and isolate test datasets per case to avoid coupling and flaky outcomes.
-- Validate performance-sensitive queries with realistic filter/join patterns to catch missing indexes before release.
-- Test retry behavior for transient failures with bounded attempts, backoff, and idempotent-safe operations only.
+- Add tests for migrations, data integrity constraints, and transactional behavior.
+- Validate edge cases around nullability, uniqueness, foreign keys, and cascading operations.
+- Include query performance checks for critical paths, especially after schema/index changes.
+- Keep fixtures deterministic and verify behavior under concurrent access where relevant.

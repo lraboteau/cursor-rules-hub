@@ -1,0 +1,16 @@
+version: 1
+template:
+  id: ruby-rails
+  title: Ruby on Rails
+priority:
+  - type: stack-base
+    modules:
+      - stacks/ruby-rails/base
+  - type: stack-extension
+    modules:
+      - stacks/ruby-rails/testing
+  - type: cross-cutting
+    modules:
+      - cross-cutting/docs
+      - cross-cutting/security
+      - cross-cutting/performance

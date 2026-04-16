@@ -1,22 +1,16 @@
 version: 1
-core: true
 template:
   id: python
-  title: Python application
+  title: Python
 priority:
   - type: stack-base
     modules:
-      - fundamentals/rest-api
       - stacks/python/base
   - type: stack-extension
     modules:
       - stacks/python/testing
   - type: cross-cutting
     modules:
-      - cross-cutting/security
-      - cross-cutting/testing
-      - cross-cutting/accessibility
-      - cross-cutting/json-ld
-      - cross-cutting/performance
       - cross-cutting/docs
-      - cross-cutting/cursor-ide-basics
+      - cross-cutting/security
+      - cross-cutting/performance

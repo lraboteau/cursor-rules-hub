@@ -1,0 +1,16 @@
+version: 1
+template:
+  id: esbuild
+  title: Esbuild
+priority:
+  - type: stack-base
+    modules:
+      - stacks/esbuild/base
+  - type: stack-extension
+    modules:
+      - stacks/esbuild/testing
+  - type: cross-cutting
+    modules:
+      - cross-cutting/docs
+      - cross-cutting/security
+      - cross-cutting/performance
