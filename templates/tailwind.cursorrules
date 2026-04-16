@@ -2,7 +2,7 @@
 cursor-rules-hub: generated — do not edit by hand
 manifest: tailwind
 manifest-path: manifests/tailwind.yml
-fingerprint: sha256:e05993e77743ce4f2dec81c9c013385d368053dd64eb68317e4bc3c3996b68c4
+fingerprint: sha256:64c94a2beb3a6f4f495221ccbdda6b4d24e25596e242764f96c39b3925b5e02e
 -->
 
 # Hub identity
@@ -22,131 +22,41 @@ This file is composed into every public template unless `core: false` is set in 
 - Keep edits minimal and scoped to the task.
 - Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
 
-# Tailwind Best Practices
+# Tailwind CSS Baseline
 
 
-- Keep utility classes readable and predictable by using a consistent class ordering strategy.
-- Avoid long, duplicated class strings; extract reusable class groups into shared components or helpers.
-- Prefer semantic component boundaries over repeating the same utility blocks across files.
-- Keep conditional classes explicit and composable (for example with `clsx`/`cva` patterns) instead of inline string sprawl.
-- Use design tokens and Tailwind theme scales (`spacing`, `colors`, `fontSize`) before arbitrary values.
-- Use arbitrary values only when necessary and document why when intent is not obvious.
-- Define interactive and accessibility states intentionally (`hover`, `focus-visible`, `disabled`, `aria-*` where relevant).
-- Keep responsive behavior explicit (`sm`/`md`/`lg`...) and avoid conflicting breakpoint overrides.
-- Prefer stable layout primitives (`flex`, `grid`, `gap`) over brittle spacing hacks.
-- Ensure dark mode and contrast expectations are handled consistently where the UI supports theme switching.
-- Keep class decisions in the component layer; avoid mixing style concerns into unrelated business logic.
-- Add or update UI tests/snapshots when class composition changes impact rendering or interaction behavior.
+- Prefer utility-first composition with clear, maintainable class patterns over ad-hoc custom CSS.
+- Keep design tokens and configuration centralized to preserve consistency across components.
+- Minimize generated CSS by configuring content scanning paths accurately.
+- Use framework-native patterns for variants, responsive behavior, and stateful UI styling.
+- Run `npm test` before proposing behavior changes.
 
-# Testing Tailwind Features
+# Tailwind CSS Testing Discipline
 
 
-- Prefer component-level tests that verify key class composition for variants, states, and responsive behavior.
-- Add snapshot or visual regression coverage when utility changes can affect layout or interaction affordances.
-- Cover interactive and accessibility states (`hover`, `focus-visible`, `disabled`, `aria-*`) to prevent styling regressions.
-- Keep tests resilient by asserting meaningful class groups/behavior rather than brittle full-string matches when possible.
+- Add tests for class generation behavior, plugin interactions, and framework integration points.
+- Validate responsive, dark mode, and variant outputs for core UI paths.
+- Keep snapshot and visual-regression tests stable and representative of real usage.
+- Run `npm test` and build checks to catch regressions in generated CSS output.
 
-# Security Best Practices
-
-
-- Treat all external input as untrusted; validate and sanitize params, query, headers, and body before use.
-- Enforce authentication and authorization explicitly for protected resources and state-changing actions.
-- Apply least-privilege access for services, bindings, and data operations.
-- Never hardcode secrets, tokens, or credentials; use secure secret/binding workflows.
-- Never log secrets or sensitive personal data; sanitize logs and error payloads.
-- Keep error responses generic for clients and avoid exposing internals, stack traces, or infrastructure details.
-- Use parameterized queries/prepared statements for dynamic data access to prevent injection risks.
-- Validate file uploads/content types and enforce safe size/type limits for untrusted payloads.
-- Set and maintain secure HTTP behavior (CORS, security headers, cookie/session flags) intentionally.
-- Protect critical endpoints with abuse controls (rate limiting, throttling, and anomaly monitoring where applicable).
-- Prefer secure-by-default dependency and package practices; avoid unmaintained or high-risk libraries.
-- Keep threat-sensitive logic covered by tests (authz boundaries, validation failures, and privilege escalation paths).
-- Include security review checkpoints in release workflow for high-risk changes.
-
-# Testing expectations
+# Documentation Maintenance
 
 
-- Add or update automated tests when behavior changes; skip only with an explicit reason noted in the task.
-- Prefer fast, deterministic tests; isolate flaky IO behind interfaces that can be stubbed.
-- Keep fixtures small and local to the suite that uses them.
+- Update user-facing and contributor docs when behavior changes.
+- Keep examples executable and aligned with current CLI and APIs.
+- Prefer concise docs that describe intent, constraints, and verification steps.
 
-# Accessibility best practices
-
-
-- Prefer semantic HTML elements before ARIA workarounds (`button`, `nav`, `main`, `label`, `fieldset`, etc.).
-- Ensure every interactive element is keyboard accessible and usable without a mouse.
-- Keep visible and logical focus behavior (`:focus-visible`, focus order, no keyboard traps).
-- Use accessible names for controls (`label`, `aria-label`, `aria-labelledby`) and avoid unlabeled inputs/buttons.
-- Keep heading hierarchy meaningful and sequential for screen-reader navigation.
-- Ensure sufficient color contrast and do not rely on color alone to convey meaning.
-- Provide text alternatives for non-text content (`alt`, captions/transcripts where relevant).
-- Announce dynamic UI changes appropriately (live regions and state updates when necessary).
-- Keep form validation accessible: clear error messages, field association, and error summary behavior.
-- Use ARIA only when native semantics are insufficient; avoid redundant or conflicting ARIA attributes.
-- Respect reduced motion and avoid animation that harms readability or usability.
-- Include accessibility checks in delivery workflow (linting, automated scans, and targeted manual keyboard/screen-reader checks).
-- Add or update tests when interaction or UI structure changes can impact accessibility behavior.
-
-# JSON-LD Best Practices
+# Security Baseline
 
 
-- Use valid JSON-LD with `@context` and a Schema.org `@type` appropriate for the page intent.
-- Keep structured data aligned with visible page content; never add misleading or unsupported claims.
-- Prefer specific Schema.org types and required/recommended properties over generic fallback shapes.
-- Keep identifiers stable (`@id`, canonical URLs) to avoid duplicate or conflicting entities.
-- Use absolute URLs for links and media references where Schema.org consumers expect resolvable URLs.
-- Ensure date/time fields use valid ISO-8601 formats and consistent timezone handling.
-- Keep organization, author, and publisher entities consistent across pages and reusable where possible.
-- Validate nested objects and array structures to avoid invalid property placements.
-- Avoid null, empty, placeholder, or deprecated properties in production payloads.
-- Serialize JSON-LD safely in templates/scripts and prevent malformed output from string concatenation.
-- Escape user-generated data before injecting it into JSON-LD payloads.
-- Validate generated JSON-LD against Schema.org/Google tooling in CI or release checks when feasible.
-- Add or update tests for critical JSON-LD generators to catch contract regressions.
+- Never commit secrets, private keys, or credentials.
+- Validate untrusted input at all system boundaries.
+- Follow responsible disclosure guidance for vulnerabilities.
+- Prefer least-privilege defaults for tooling and runtime behavior.
 
-# Performance Best Practices
+# Performance Guardrails
 
 
-- Optimize critical rendering paths to protect Core Web Vitals (LCP, CLS, INP/TBT proxies).
-- Ship less JavaScript: avoid unnecessary client bundles, heavy dependencies, and duplicate runtime logic.
-- Prefer streaming, caching, and server-side computation when it reduces client work and latency.
-- Keep images/fonts optimized (correct formats, dimensions, lazy loading, and preload only when justified).
-- Reduce layout shift by reserving space for dynamic media and async UI blocks.
-- Avoid render-blocking assets where possible; load non-critical resources with appropriate priority.
-- Keep API handlers efficient: avoid N+1 patterns, over-fetching, and unbounded payloads.
-- Use pagination, filtering, and field selection for list endpoints to cap response cost.
-- Apply caching intentionally (HTTP cache headers, edge/cache layers, and revalidation strategy).
-- Prefer idempotent and retry-safe operations for transient failures; avoid expensive repeated side effects.
-- Measure and log performance metrics with request correlation identifiers for troubleshooting.
-- Profile before and after meaningful changes; verify improvements with objective metrics.
-- Add/update tests or checks for performance-sensitive paths when behavior could regress.
-
-# Documentation Best Practices
-
-
-- Keep documentation concise, actionable, and aligned with current system behavior.
-- Write for readers with varying context: explain intent, prerequisites, and expected outcomes.
-- Prefer task-oriented structure (`what`, `when`, `how`, `verify`, `rollback/recovery` where relevant).
-- Keep setup and usage steps explicit, reproducible, and environment-aware.
-- Document assumptions, constraints, and known limitations when they affect safe operation.
-- Keep examples realistic and copy-paste safe; avoid stale placeholders for critical values.
-- Update docs in the same change set when behavior, configuration, or workflows change.
-- Ensure operational docs include troubleshooting signals, common failure modes, and escalation paths.
-- Keep references between rules, skills, commands, and README consistent and non-contradictory.
-- Prefer stable terminology and naming across code, docs, and runbooks.
-- Remove or revise obsolete guidance promptly; stale docs are production risk.
-- Include verification steps so readers can confirm a change worked as intended.
-- Capture high-impact decisions briefly to preserve context for future maintainers.
-
-# Cursor IDE workflow
-
-
-- Prefer **project rules** (e.g. `.cursor/rules/*.mdc`) scoped with `globs` when the repo has many areas; use a **single `.cursorrules`** when you want one file to share or sync across machines.
-- Keep rules **short and specific**; split large topics into multiple rule files instead of one huge document.
-- Ground suggestions in **this repository’s** stack, configs, and existing patterns—avoid generic advice that conflicts with the codebase.
-
-# Cursor IDE context and edits
-
-
-- When changing behavior, update **tests and docs** the same way you would for non-agent workflows.
-- Do not paste secrets into rules, prompts, or committed samples; use env vars and secret stores as documented for your stack.
+- Measure before optimizing and keep benchmark evidence with changes.
+- Protect hot paths from unnecessary allocations and repeated IO.
+- Track performance regressions in CI or release validation where possible.

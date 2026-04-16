@@ -1,21 +1,16 @@
 version: 1
-core: true
 template:
   id: ruby-middleman
-  title: Ruby Middleman site
+  title: Ruby Middleman
 priority:
   - type: stack-base
     modules:
-      - stacks/ruby/base
       - stacks/ruby-middleman/base
   - type: stack-extension
-    modules: []
+    modules:
+      - stacks/ruby-middleman/testing
   - type: cross-cutting
     modules:
-      - cross-cutting/security
-      - cross-cutting/testing
-      - cross-cutting/accessibility
-      - cross-cutting/json-ld
-      - cross-cutting/performance
       - cross-cutting/docs
-      - cross-cutting/cursor-ide-basics
+      - cross-cutting/security
+      - cross-cutting/performance

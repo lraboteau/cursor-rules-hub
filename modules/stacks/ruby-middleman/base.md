@@ -1,7 +1,6 @@
-# Middleman static sites
+# Ruby Middleman Baseline
 
-- Respect Middleman’s source and build directories; avoid ad-hoc writes outside `build/` outputs.
-- Keep front matter and data files organized; prefer YAML data over duplicated literals across templates.
-- When editing helpers, keep them free of global mutable state across builds.
-- Use the official Middleman organization (`https://github.com/middleman/`) as the reference source for framework behavior, supported extensions, and maintenance status.
-- Prefer conventions compatible with actively maintained Middleman components and document any dependency on archived or stale plugins.
+- Keep Middleman project structure simple and predictable (`config.rb`, `source/`, asset directories).
+- Prefer static-first architecture and avoid unnecessary runtime coupling.
+- Use idiomatic Ruby and Middleman conventions for templates, helpers, and asset processing.
+- Run `bundle exec rake test` before proposing framework-level behavior changes.

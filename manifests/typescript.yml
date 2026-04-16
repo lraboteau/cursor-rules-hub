@@ -1,0 +1,16 @@
+version: 1
+template:
+  id: typescript
+  title: TypeScript
+priority:
+  - type: stack-base
+    modules:
+      - stacks/typescript/base
+  - type: stack-extension
+    modules:
+      - stacks/typescript/testing
+  - type: cross-cutting
+    modules:
+      - cross-cutting/docs
+      - cross-cutting/security
+      - cross-cutting/performance

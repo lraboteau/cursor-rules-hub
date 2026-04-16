@@ -1,0 +1,14 @@
+version: 1
+template:
+  id: seo
+  title: SEO Fundamentals
+priority:
+  - type: stack-base
+    modules:
+      - fundamentals/seo
+  - type: stack-extension
+    modules: []
+  - type: cross-cutting
+    modules:
+      - cross-cutting/docs
+      - cross-cutting/performance

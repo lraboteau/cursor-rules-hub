@@ -1,0 +1,62 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: cloudflare-sql1
+manifest-path: manifests/cloudflare-sql1.yml
+fingerprint: sha256:6d7c01a8ee5f38976a34b51a7b1b225ec970c71f78e1a1909fc25429be582bce
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# Cloudflare D1 SQL Baseline
+
+
+- Access D1 through Worker bindings and prepared statements instead of string-concatenated SQL.
+- Keep schema and query design index-aware to preserve low-latency reads and predictable throughput.
+- Use D1-compatible SQLite features deliberately (JSON/FTS extensions where justified by use case).
+- Batch large migrations and bulk updates/deletes to stay within Workers CPU and execution limits.
+- Prefer binding names in automation and migration scripts to keep deployments portable across environments.
+
+# Cloudflare D1 SQL Testing Discipline
+
+
+- Add tests for prepared statement correctness, parameter binding, and expected query results.
+- Verify index usage and query plans for performance-critical paths before release.
+- Test migrations in incremental batches and validate rollback/recovery strategy for failed steps.
+- Validate Workers integration limits (CPU, memory, concurrent D1 connections) under realistic load.
+
+# Documentation Maintenance
+
+
+- Update user-facing and contributor docs when behavior changes.
+- Keep examples executable and aligned with current CLI and APIs.
+- Prefer concise docs that describe intent, constraints, and verification steps.
+
+# Security Baseline
+
+
+- Never commit secrets, private keys, or credentials.
+- Validate untrusted input at all system boundaries.
+- Follow responsible disclosure guidance for vulnerabilities.
+- Prefer least-privilege defaults for tooling and runtime behavior.
+
+# Performance Guardrails
+
+
+- Measure before optimizing and keep benchmark evidence with changes.
+- Protect hot paths from unnecessary allocations and repeated IO.
+- Track performance regressions in CI or release validation where possible.

@@ -39,5 +39,5 @@ python scripts/compose.py --all
 python scripts/compose.py --check
 
 # Compose one manifest
-python scripts/compose.py --manifest manifests/hono-cloudflare-workers.yml
+python scripts/compose.py --manifest manifests/hono.yml
 ```

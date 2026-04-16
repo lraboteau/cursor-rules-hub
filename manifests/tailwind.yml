@@ -1,8 +1,7 @@
 version: 1
-core: true
 template:
   id: tailwind
-  title: Tailwind CSS stack
+  title: Tailwind CSS
 priority:
   - type: stack-base
     modules:
@@ -12,10 +11,6 @@ priority:
       - stacks/tailwind/testing
   - type: cross-cutting
     modules:
-      - cross-cutting/security
-      - cross-cutting/testing
-      - cross-cutting/accessibility
-      - cross-cutting/json-ld
-      - cross-cutting/performance
       - cross-cutting/docs
-      - cross-cutting/cursor-ide-basics
+      - cross-cutting/security
+      - cross-cutting/performance

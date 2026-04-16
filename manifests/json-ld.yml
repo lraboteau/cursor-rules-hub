@@ -1,0 +1,16 @@
+version: 1
+template:
+  id: json-ld
+  title: JSON-LD
+priority:
+  - type: stack-base
+    modules:
+      - stacks/json-ld/base
+  - type: stack-extension
+    modules:
+      - stacks/json-ld/testing
+  - type: cross-cutting
+    modules:
+      - cross-cutting/docs
+      - cross-cutting/security
+      - cross-cutting/performance

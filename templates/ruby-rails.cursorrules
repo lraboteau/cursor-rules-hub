@@ -1,0 +1,61 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: ruby-rails
+manifest-path: manifests/ruby-rails.yml
+fingerprint: sha256:5976aa94085f0279407d6f7e413271c3f8e9ebcc451a8c0973addf2009a228dc
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# Ruby on Rails Baseline
+
+
+- Keep application architecture aligned with Rails MVC conventions and framework defaults.
+- Prefer built-in Rails components (Active Record, Action Pack, Active Job, Action Mailer) before introducing custom framework layers.
+- Keep migrations, models, controllers, and views cohesive with clear domain boundaries.
+- Run `bundle exec rake test` before proposing behavior changes.
+
+# Ruby on Rails Testing Discipline
+
+
+- Add or update tests for models, controllers, jobs, mailers, and integration flows affected by each change.
+- Keep regressions reproducible with focused fixtures and deterministic setup.
+- Run `bundle exec rake test` and targeted suites for impacted frameworks before merge.
+- Treat security-sensitive regressions (auth, params handling, session behavior) as blockers.
+
+# Documentation Maintenance
+
+
+- Update user-facing and contributor docs when behavior changes.
+- Keep examples executable and aligned with current CLI and APIs.
+- Prefer concise docs that describe intent, constraints, and verification steps.
+
+# Security Baseline
+
+
+- Never commit secrets, private keys, or credentials.
+- Validate untrusted input at all system boundaries.
+- Follow responsible disclosure guidance for vulnerabilities.
+- Prefer least-privilege defaults for tooling and runtime behavior.
+
+# Performance Guardrails
+
+
+- Measure before optimizing and keep benchmark evidence with changes.
+- Protect hot paths from unnecessary allocations and repeated IO.
+- Track performance regressions in CI or release validation where possible.

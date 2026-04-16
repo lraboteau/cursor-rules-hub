@@ -1,0 +1,16 @@
+version: 1
+template:
+  id: semantic-web
+  title: Semantic Web Rules
+priority:
+  - type: stack-base
+    modules:
+      - stacks/semantic-web/base
+  - type: stack-extension
+    modules:
+      - stacks/semantic-web/testing
+  - type: cross-cutting
+    modules:
+      - cross-cutting/docs
+      - cross-cutting/security
+      - cross-cutting/performance

@@ -63,7 +63,7 @@ def test_install_cursorrules_backup(tmp_path: Path) -> None:
         "bash",
         str(script),
         "--template",
-        "hono-cloudflare-workers",
+        "hono",
         "--target",
         str(proj),
         "--owner-repo",

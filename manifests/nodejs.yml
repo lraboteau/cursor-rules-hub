@@ -1,22 +1,16 @@
 version: 1
-core: true
 template:
   id: nodejs
-  title: Node.js application
+  title: Node.js
 priority:
   - type: stack-base
     modules:
-      - fundamentals/rest-api
       - stacks/nodejs/base
   - type: stack-extension
     modules:
       - stacks/nodejs/testing
   - type: cross-cutting
     modules:
-      - cross-cutting/security
-      - cross-cutting/testing
-      - cross-cutting/accessibility
-      - cross-cutting/json-ld
-      - cross-cutting/performance
       - cross-cutting/docs
-      - cross-cutting/cursor-ide-basics
+      - cross-cutting/security
+      - cross-cutting/performance

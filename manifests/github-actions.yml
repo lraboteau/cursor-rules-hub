@@ -1,0 +1,16 @@
+version: 1
+template:
+  id: github-actions
+  title: GitHub Actions
+priority:
+  - type: stack-base
+    modules:
+      - stacks/github-actions/base
+  - type: stack-extension
+    modules:
+      - stacks/github-actions/testing
+  - type: cross-cutting
+    modules:
+      - cross-cutting/docs
+      - cross-cutting/security
+      - cross-cutting/performance

@@ -15,40 +15,47 @@ python scripts/compose.py --all
 python scripts/sync.py --list
 
 # Apply a template to a new project
-python scripts/sync.py --yes /path/to/new-project hono-cloudflare-workers
+python scripts/sync.py --yes /path/to/new-project hono
 
 # Optional: regenerate templates before syncing
-python scripts/sync.py --compose-first --yes /path/to/new-project hono-cloudflare-workers
+python scripts/sync.py --compose-first --yes /path/to/new-project hono
 ```
 
 ## Public Templates
 
 Current public stacks include:
 
+- `cloudflare-sql1`
 - `cloudflare-workers`
+- `esbuild`
+- `github-actions`
 - `hono`
-- `hono-cloudflare-workers`
+- `json-ld`
 - `nodejs`
 - `postgresql`
 - `python`
 - `ruby`
 - `ruby-middleman`
+- `ruby-rails`
 - `rust`
-- `cloudflare-sql1`
+- `semantic-web`
+- `seo`
 - `tailwind`
+- `typescript`
+- `vite`
 
 ## Install Without Clone (GitHub)
 
 ```bash
 # Direct raw template URL
 curl -fsSL \
-  https://raw.githubusercontent.com/laurent/cursor-rules-hub/main/templates/hono-cloudflare-workers.cursorrules \
+  https://raw.githubusercontent.com/laurent/cursor-rules-hub/main/templates/hono.cursorrules \
   -o /path/to/new-project/.cursorrules
 
 # Bootstrap installer script (template + target)
 curl -fsSL \
   https://raw.githubusercontent.com/laurent/cursor-rules-hub/main/scripts/install-cursorrules.sh \
-  | bash -s -- --template hono-cloudflare-workers --target /path/to/new-project --yes
+  | bash -s -- --template hono --target /path/to/new-project --yes
 ```
 
 - Architecture: [docs/architecture.md](docs/architecture.md)

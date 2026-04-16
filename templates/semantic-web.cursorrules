@@ -1,0 +1,62 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: semantic-web
+manifest-path: manifests/semantic-web.yml
+fingerprint: sha256:1c70b738a76e818387ebbb1ea0af6163af28eb760b492def7856c50adbcf79c5
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# Semantic Web Baseline
+
+
+- Model data with explicit vocabularies and stable IRIs to preserve long-term interoperability.
+- Keep JSON-LD, RDF, and schema definitions aligned across documentation, examples, and production payloads.
+- Prefer standards-compliant serialization and parsing behavior over implementation-specific shortcuts.
+- Document context usage, term definitions, and compatibility guarantees for downstream consumers.
+- Run semantic validation checks before release.
+
+# Semantic Web Testing Discipline
+
+
+- Add tests for context expansion/compaction, graph equivalence, and framing behavior.
+- Validate RDF output consistency across supported serializations and toolchains.
+- Keep fixtures representative of real linked-data datasets and ontology evolution scenarios.
+- Include compatibility tests for consumers relying on legacy contexts or term aliases.
+
+# Documentation Maintenance
+
+
+- Update user-facing and contributor docs when behavior changes.
+- Keep examples executable and aligned with current CLI and APIs.
+- Prefer concise docs that describe intent, constraints, and verification steps.
+
+# Security Baseline
+
+
+- Never commit secrets, private keys, or credentials.
+- Validate untrusted input at all system boundaries.
+- Follow responsible disclosure guidance for vulnerabilities.
+- Prefer least-privilege defaults for tooling and runtime behavior.
+
+# Performance Guardrails
+
+
+- Measure before optimizing and keep benchmark evidence with changes.
+- Protect hot paths from unnecessary allocations and repeated IO.
+- Track performance regressions in CI or release validation where possible.

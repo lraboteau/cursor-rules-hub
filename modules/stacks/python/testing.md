@@ -1,5 +1,6 @@
-# Testing Python features
+# CPython Testing Discipline
 
-- Prefer `pytest` with clear fixture scopes; avoid hidden global state between tests.
-- Cover CLI and integration behavior with lightweight end-to-end tests when stack workflows depend on scripts.
-- Mock external services by default and keep network/file-system integration tests explicit and isolated.
+- Add or update tests for parser, runtime, stdlib, and platform-specific behavior touched by each change.
+- Keep regressions reproducible and tied to concrete failing scenarios.
+- Run `make test` and targeted test subsets for impacted areas before merge.
+- Treat crashes, security regressions, and behavioral incompatibilities as release blockers.

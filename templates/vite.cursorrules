@@ -1,0 +1,62 @@
+<!--
+cursor-rules-hub: generated — do not edit by hand
+manifest: vite
+manifest-path: manifests/vite.yml
+fingerprint: sha256:39bd7ec0573ceee098fec9df9be840d8e593c0d2e8f8f16ffb521d0820a1e7b5
+-->
+
+# Hub identity
+
+
+This file is composed into every public template unless `core: false` is set in the manifest.
+
+# Communication
+
+
+- Prefer clear, actionable guidance over vague principles.
+- Match the stack and tooling implied by the composed modules; do not invent constraints that contradict them.
+
+# Change discipline
+
+
+- Keep edits minimal and scoped to the task.
+- Preserve existing conventions in the consumer repository unless the task explicitly requires migration.
+
+# Vite Baseline
+
+
+- Keep dev-server startup and HMR feedback loops fast and predictable.
+- Prefer Vite-native configuration and plugin APIs before adding custom build wrappers.
+- Keep build output optimized and consistent across local, CI, and production environments.
+- Validate compatibility for framework integrations and plugin interactions.
+- Run `npm test` before proposing behavior changes.
+
+# Vite Testing Discipline
+
+
+- Add tests for dev server behavior, HMR correctness, and build output regressions.
+- Cover plugin API interactions and framework-specific integration paths.
+- Keep test fixtures small and representative of real-world frontend setups.
+- Run `npm test` and targeted integration suites for affected packages before merge.
+
+# Documentation Maintenance
+
+
+- Update user-facing and contributor docs when behavior changes.
+- Keep examples executable and aligned with current CLI and APIs.
+- Prefer concise docs that describe intent, constraints, and verification steps.
+
+# Security Baseline
+
+
+- Never commit secrets, private keys, or credentials.
+- Validate untrusted input at all system boundaries.
+- Follow responsible disclosure guidance for vulnerabilities.
+- Prefer least-privilege defaults for tooling and runtime behavior.
+
+# Performance Guardrails
+
+
+- Measure before optimizing and keep benchmark evidence with changes.
+- Protect hot paths from unnecessary allocations and repeated IO.
+- Track performance regressions in CI or release validation where possible.

@@ -1,8 +1,7 @@
 version: 1
-core: true
 template:
-  id: sql1
-  title: Cloudflare SQL1 stack
+  id: cloudflare-sql1
+  title: Cloudflare D1 SQL
 priority:
   - type: stack-base
     modules:
@@ -12,9 +11,6 @@ priority:
       - stacks/cloudflare-sql1/testing
   - type: cross-cutting
     modules:
-      - cross-cutting/security
-      - cross-cutting/testing
-      - cross-cutting/accessibility
-      - cross-cutting/performance
       - cross-cutting/docs
-      - cross-cutting/cursor-ide-basics
+      - cross-cutting/security
+      - cross-cutting/performance

@@ -1,5 +1,6 @@
-# Testing Workers Features
+# Cloudflare Workers Testing Discipline
 
-- Prefer `vitest` with `@cloudflare/vitest-pool-workers` when the project already uses that stack.
-- Keep tests hermetic: mock fetches and bindings where needed; avoid live network in unit tests by default.
-- Add focused integration tests for Worker bindings (`env`) and D1 interactions when behavior depends on runtime resources.
+- Add tests for fetch handlers, bindings behavior, and runtime-specific error paths.
+- Validate request/response streaming and large-payload behavior without buffering regressions.
+- Verify background tasks that rely on `waitUntil` and failure/retry handling.
+- Enable and use Workers Logs and Traces to validate production behavior and triage incidents.
